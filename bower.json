@@ -1,0 +1,10 @@
+{
+	"name": "dndapp",
+	"version": "1.0.0",
+	"dependencies": {
+		"angular": "latest",
+		"bootstrap": "latest",
+		"angular-route": "latest",
+		"angular-resource": "latest"
+	}
+}

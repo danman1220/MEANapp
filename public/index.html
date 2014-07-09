@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+	<base href="/">
+	<title>Stuff happens</title>
+
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="bower_components/angular-resource/angular-resource.js"></script>
+	<script src="bower_components/angular-route/angular-route.min.js"></script>
+	<script src="bower_components/jquery/dist/jquery.js"></script>
+
+	<script src="js/app.js"></script>
+	<script src="js/services/CharacterService.js"></script>
+	<script src="js/controllers/MainController.js"></script>
+	<script src="js/filters/propertyName.js"></script>
+
+</head>
+<body ng-app='DnDApp'>
+	Magic Happens
+	<div ng-controller='MainController'>
+		<form style='display: inline-block; position: relative; width: auto' id='charform'>
+			<!--label everything with h3 tagged text because I like h3-->
+			<h3>Character Data</h3>
+			<!--Here's the basic layout of a table: we generate something like this in c$.buildTable()-->
+			<table>
+				<tr>
+					<!--magic happens here: onkeyup is an event, and when that happens, the updateButton method is fired-->
+					<td align='right'> Name: </td> <td align='left'> <input type='text' autocomplete='off' ng-model='name'/></td>
+				</tr>
+				<tr>
+					<td align='right'> Character Name: </td> <td align='left'> <input type='text' autocomplete='off' ng-model='character.name'/></td>
+				</tr>
+				<tr>
+					<td align='right'> Character Class: </td> <td align='left'> <input type='text' autocomplete='off' ng-model='character.class'/></td>
+				</tr>
+				<tr>
+					<td align='right'> Character Race: </td> <td align='left'> <input type='text' autocomplete='off' ng-model='character.race'/></td>
+				</tr>
+			</table>
+
+			<br/>
+			Generated Table:
+			<br/>
+
+			<table>
+				<tr ng-repeat='attribute in attributes'>
+					<td align='right'>{{attribute | propertyName}}:</td> <td align='left'> <input type='text' autocomplete='off' ng-model='character.$attributes'/></td>
+				</tr>
+			</table>
+			<button style='margin-top: 5px' class='btn btn-primary' ng-click='addData()'>Submit</button>
+			<button style='margin-top: 5px' class='btn btn-default btn-small' ng-click='serverTest()'>Test</button>
+		</form>
+		<div id='status' style='display: inline-block; padding: 10px; border: 1px'>
+			{{status}}
+		</div>
+		{{field}}<br/>
+
+
+	</div>
+</body>
+</html>
