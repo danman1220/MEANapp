@@ -12,7 +12,9 @@ mongodb
 bower (npm install -g bower)
 
 then, once you have it
+
 -in the project directory, run npm install
+
 -in the project directory, run bower install
 
 to start the app, first start up mongodb with the mongod command
