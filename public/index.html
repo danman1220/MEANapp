@@ -46,7 +46,7 @@
 
 			<table>
 				<tr ng-repeat='attribute in attributes'>
-					<td align='right'>{{attribute | propertyName}}:</td> <td align='left'> <input type='text' autocomplete='off' ng-model='character.$attributes'/></td>
+					<td align='right'>{{attribute | propertyName}}:</td> <td align='left'> <input type='text' autocomplete='off' ng-model='attribute'/></td>
 				</tr>
 			</table>
 			<button style='margin-top: 5px' class='btn btn-primary' ng-click='addData()'>Submit</button>
