@@ -1,6 +1,8 @@
 //app.js
 angular.module('DnDApp', ['ngRoute', 'ngResource'])
 	.config(['$routeProvider', function($routeProvider) {
+
+		//provides different views in the page for different actions
 		$routeProvider
 			.when('/start', {
 				templateUrl: '../../views/start.html',
