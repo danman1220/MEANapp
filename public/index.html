@@ -14,44 +14,24 @@
 	<script src="js/app.js"></script>
 	<script src="js/services/CharacterService.js"></script>
 	<script src="js/controllers/MainController.js"></script>
-	<script src="js/filters/propertyName.js"></script>
+	<script src="js/controllers/SubmitController.js"></script>
+	<script src="js/controllers/QueryController.js"></script>
 
 </head>
 <body ng-app='DnDApp'>
-	<div ng-controller='MainController'>
-		<form role='form' style='display: inline-block; position: relative; width: auto; padding: 10px' id='charform'>
-			<!--label everything with h3 tagged text because I like h3-->
-			<h3>Player Info</h3>
-			<div>
-				<div ng-repeat='attr in playerAttributes'>
-					<label>{{attr.alias}}:</label>
-					<input type='text'  class='form-control' name='InfoFields' autocomplete='off' ng-model='player[attr.name]'/>
-				</div>
+	<div class='container-fluid'>
+		<div ng-controller='MainController'>
+			<div class='row'>
+				<a class='btn btn-default' href='#start'> Home </a>
+				<a class='btn btn-default' href='#submit'> Submit Character </a>
+				<a class='btn btn-default' href='#query'> Find Character </a>
 			</div>
-			<h3>Character Info</h3>
-			<div>
-				<div ng-repeat='attr in attributes'>
-					<label>{{attr.alias}}:</label>
-					<input type='text' class='form-control' name='InfoFields' autocomplete='off' ng-model='character[attr.name]'/>
-				</div>
+		</div>
+		<div class='row'>
+			<div class='col-md-9'>
+				<div ng-view></div>
 			</div>
-			<button style='margin-top: 5px' class='btn btn-primary' ng-click='addData()'>Submit</button>
-			<button style='margin-top: 5px' class='btn btn-default btn-small' ng-click='serverTest()'>Test</button>
-		</form>
-		<form role='form' style='display: inline-block; width: auto; vertical-align: top' id='queryform'>
-			<h3>Query A Character</h3>
-			<div>
-				<div>
-					<label>Player:</label>
-					<input type='text' class='form-control' name='QueryFields' autocomplete='off' ng-model='query.player'/>
-				</div>
-				<div>
-					<label>Character:</label>
-					<input type='text' class='form-control' name='QueryFields' autocomplete='off' ng-model='query.character'/>
-				</div>
-			</div>
-		</form>
-		{{field}}<br/>
+		</div>
 	</div>
 </body>
 </html>

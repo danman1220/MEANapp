@@ -1,0 +1,20 @@
+<form role='form' style='display: inline-block; width: auto' ng-submit='addData()'>
+	<h3>Player Info</h3>
+	<div>
+		<div ng-repeat='attr in playerAttributes'>
+			<label>{{attr.alias}}:</label>
+			<input type='text'  class='form-control' name='InfoFields' autocomplete='off' ng-model='player[attr.name]'/>
+		</div>
+	</div>
+	<h3>Character Info</h3>
+	<div>
+		<div ng-repeat='attr in attributes'>
+			<div class='form-group'>
+				<label>{{attr.alias}}:</label>
+				<input type='text' class='form-control' name='InfoFields' autocomplete='off' ng-model='character[attr.name]'/>
+			</div>
+		</div>
+	</div>
+	<button style='margin-top: 5px' class='btn btn-primary' ng-class="{'btn-success': submitSuccess}">Submit</button>
+	<div ng-show='submitSuccess'>{{success}}</div>
+</form>
