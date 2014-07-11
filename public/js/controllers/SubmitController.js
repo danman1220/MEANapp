@@ -14,6 +14,7 @@ angular.module('DnDApp').controller('SubmitController', ['$scope', 'CharacterSer
 
 	//generates a POST request to /api/:name/character/:charname with the data from $scope.character 
 	$scope.addData = function() {
+		//TODO - sanitize $scope.character
 		//POST
 		CharacterService.save({name: $scope.player.name, charName: $scope.character.name}, $scope.character, function(res) {
 			//SUCCESS - toggle state to success, display success confirm, and clear fields

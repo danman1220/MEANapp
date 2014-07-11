@@ -6,6 +6,7 @@ angular.module('DnDApp').controller('QueryController', ['$scope', 'CharacterServ
 	$scope.serverTest = function(name) {
 		//GET
 		CharacterService.get({name: $scope.query.player, charName: $scope.query.character}, function(character) {
+			// console.log(character);
 			$scope.field = character;
 		});	
 	};

@@ -12,6 +12,7 @@ var port = 5309;
 
 //connect to mongoose
 mongoose.connect(db.url);
+require('./app/models/CharacterModel')
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser());

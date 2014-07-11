@@ -16,6 +16,10 @@ angular.module('DnDApp', ['ngRoute', 'ngResource'])
 				templateUrl: '../../views/query.html',
 				controller: 'QueryController'
 			})
+			.when('/characters', {
+				templateUrl: '../../views/characters.html',
+				controller: 'CharactersController'
+			})
 			.otherwise({
 				redirectTo: '/start'
 			});
