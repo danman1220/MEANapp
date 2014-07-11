@@ -25,14 +25,14 @@ exports.get = function(req, res) {
 		} else {
 			console.log("SENDING");
 			res.json(character);
-		};
+		}
 	});
 };
 
 exports.update = function(req, res) {
 	res.json(Character.update({player: req.params.name, name: req.params.charName}, req.body));
 
-}
+};
 
 exports.all = function(req, res) {
 	Character.find().exec(function(err, characterList) {

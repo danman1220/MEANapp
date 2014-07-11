@@ -7,6 +7,7 @@ angular.module('DnDApp').controller('CharactersController', ['$scope', 'Characte
 		console.log(res);
 		$scope.characters = res;
 		
+		//get list of unique players from our query
 		$scope.players.push('ALL');
 		$scope.characters.forEach(function(character){
 			console.log(character.name);

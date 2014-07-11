@@ -5,6 +5,12 @@
 	"dependencies": {
 		"mongoose": "latest",
 		"express": "latest",
-		"body-parser": "latest"
+		"body-parser": "latest",
+		"grunt": "latest",
+		"grunt-nodemon": "latest",
+		"grunt-concurrent": "latest",
+		"grunt-contrib-watch": "latest",
+		"grunt-contrib-jshint": "latest",
+		"jshint-stylish": "latest"
 	}
 }
