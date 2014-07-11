@@ -8,6 +8,10 @@ angular.module('DnDApp').controller('QueryController', ['$scope', 'CharacterServ
 		CharacterService.get({name: $scope.query.player, charName: $scope.query.character}, function(character) {
 			// console.log(character);
 			$scope.field = character;
+		}, function(res) {
+			if (res.status === 404) {
+				$scope.field = res.data;
+			}
 		});	
 	};
 

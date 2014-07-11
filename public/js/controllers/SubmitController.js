@@ -10,7 +10,8 @@ angular.module('DnDApp').controller('SubmitController', ['$scope', 'CharacterSer
 
 	//used for generating tables
 	$scope.playerAttributes = [{name: "name", alias: "Name"}];
-	$scope.attributes = [{name: "name", alias: "Character Name"}, {name:"class", alias: "Character Class"}, {name:"race", alias: "Character Race"}];
+	$scope.attributes = [{name: "name", alias: "Character Name"}, {name:"class", alias: "Character Class"}, {name:"race", alias: "Character Race"}, 
+	{name: "level", alias: "Character Level"}];
 
 	//generates a POST request to /api/:name/character/:charname with the data from $scope.character 
 	$scope.addData = function() {
@@ -25,7 +26,7 @@ angular.module('DnDApp').controller('SubmitController', ['$scope', 'CharacterSer
 		}, 
 		function(res) {
 			//ERROR - log the error and go on our merry way
-			console.log(res.data.error);
+			console.log('ERROR: ' + res.data.error);
 		});
 	};
 

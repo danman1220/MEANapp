@@ -2,12 +2,12 @@
 	<h3>Query A Character</h3>
 	<div>
 		<div>
-			<label>Player:</label>
-			<input type='text' class='form-control' name='QueryFields' autocomplete='off' ng-model='query.player'/>
+			<label for='player'>Player:</label>
+			<input type='text' class='form-control' name='player' autocomplete='off' ng-model='query.player' required />
 		</div>
 		<div>
-			<label>Character:</label>
-			<input type='text' class='form-control' name='QueryFields' autocomplete='off' ng-model='query.character'/>
+			<label for-'character'>Character:</label>
+			<input type='text' class='form-control' name='character' autocomplete='off' ng-model='query.character'/>
 		</div>
 		<button style='margin-top: 5px' class='btn btn-default btn-small' ng-click='serverTest()'>Test</button>
 	</div>

@@ -2,16 +2,16 @@
 	<h3>Player Info</h3>
 	<div>
 		<div ng-repeat='attr in playerAttributes'>
-			<label>{{attr.alias}}:</label>
-			<input type='text'  class='form-control' name='InfoFields' autocomplete='off' ng-model='player[attr.name]'/>
+			<label for='attr.name'>{{attr.alias}}:</label>
+			<input type='text'  class='form-control' name='attr.name' autocomplete='off' ng-model='player[attr.name]' required />
 		</div>
 	</div>
 	<h3>Character Info</h3>
 	<div>
 		<div ng-repeat='attr in attributes'>
 			<div class='form-group'>
-				<label>{{attr.alias}}:</label>
-				<input type='text' class='form-control' name='InfoFields' autocomplete='off' ng-model='character[attr.name]'/>
+				<label for='attr.name'>{{attr.alias}}:</label>
+				<input type='text' class='form-control' name='attr.name' autocomplete='off' ng-model='character[attr.name]' required />
 			</div>
 		</div>
 	</div>

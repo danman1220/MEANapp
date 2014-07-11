@@ -1,10 +1,17 @@
 <div>
+	<form role='form'>
+		<div class='form-group'>
+			<label for='playerSelect'> Select a Player </label>
+			<select class='form-inline' ng-model='playerQuery' ng-options='player for player in players'> Select a Player </select>
+		</div>
+	</form>
 	<table class='table'>
-		<th>Name</th><th>Class</th><th>Race</th>
+		<th>Name</th><th>Class</th><th>Race</th><th>Level</th>
 		<tr ng-repeat="character in characters | orderBy:'name'">
-			<td>{{character.name}}</td> 
-			<td>{{character.class}}</td> 
-			<td>{{character.race}}</td>
+			<td>{{character.name || 'Undefined'}}</td> 
+			<td>{{character.class || 'Undefined'}}</td> 
+			<td>{{character.race || 'Undefined'}}</td>
+			<td>{{character.level || 'Undefined'}}</td>
 		</tr>
 	</table>
 </div>

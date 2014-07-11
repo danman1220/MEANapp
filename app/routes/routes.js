@@ -10,7 +10,8 @@ module.exports = function(app) {
 	//set up routing for http requests
 	app.route('/api/:name/character/:charName')
 		.get(Character.get)
-		.post(Character.create);
+		.post(Character.create)
+		.put(Character.update);
 
 	//This looks vaguely query-ish... deal with it
 	app.route('/api/character').get(Character.all);

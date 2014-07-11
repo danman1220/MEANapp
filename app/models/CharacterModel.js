@@ -7,7 +7,8 @@ var CharacterSchema = new Schema({
 	player: 'string',
 	name: 'string',
 	class: 'string',
-	race: 'string'	
+	race: 'string',
+	level: 'number'	
 });
 
 mongoose.model('Character', CharacterSchema);

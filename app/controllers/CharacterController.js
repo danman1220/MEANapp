@@ -19,12 +19,20 @@ exports.get = function(req, res) {
 		console.log(character);
 		if (err) {
 			console.log(err);
+		} else if (!character) {
+			console.log("No match found");
+			res.send(404, "No Match Found");
 		} else {
 			console.log("SENDING");
 			res.json(character);
 		};
 	});
 };
+
+exports.update = function(req, res) {
+	res.json(Character.update({player: req.params.name, name: req.params.charName}, req.body));
+
+}
 
 exports.all = function(req, res) {
 	Character.find().exec(function(err, characterList) {
