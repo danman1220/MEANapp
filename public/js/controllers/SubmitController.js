@@ -30,5 +30,4 @@ angular.module('DnDApp').controller('SubmitController', ['$scope', 'CharacterSer
 			$scope.error = res.data;
 		});
 	};
-
 }]);
