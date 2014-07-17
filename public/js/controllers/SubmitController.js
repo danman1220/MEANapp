@@ -1,12 +1,12 @@
 //SubmitController: controls the submission of new characters to the server
 angular.module('DnDApp').controller('SubmitController', ['$scope', 'CharacterService', function($scope, CharacterService) {
 
+	//submitSuccess used to toggle state of submission
+	$scope.submitSuccess= false;
+
 	//information objects to store field data
 	$scope.player = {};
 	$scope.character = {};
-
-	//submitSuccess used to toggle state of submission
-	$scope.submitSuccess= false;
 
 	//used for generating tables
 	$scope.playerAttributes = [{name: "name", alias: "Name"}];
@@ -25,8 +25,9 @@ angular.module('DnDApp').controller('SubmitController', ['$scope', 'CharacterSer
 			$scope.player = {};
 		}, 
 		function(res) {
-			//ERROR - log the error and go on our merry way
-			console.log('ERROR: ' + res.data.error);
+			$scope.submitSuccess = false;
+			console.log("ERROR: " + res.data);
+			$scope.error = res.data;
 		});
 	};
 

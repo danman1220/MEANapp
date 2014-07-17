@@ -17,6 +17,10 @@ module.exports = function(app) {
 	app.route('/api/character').get(Character.all);
 	app.route('/api/:name/character').get(Character.all);
 
+	app.route('/api/haskell').get(function(req, res) {
+		res.sendfile('./public/haskell.html');
+	});
+
 	//default routing
 	app.route('*').get(function(req, res) {
 		res.sendfile('./public/index.html');

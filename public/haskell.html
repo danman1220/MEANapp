@@ -1,0 +1,256 @@
+<!doctype html> 
+<html>
+<head>
+    <style>
+        .code {
+            display: inline-block;
+            color: #FFF;
+            background-color: black;
+            padding: 5px;
+        }
+
+    </style>
+</head>
+<!-- ______    ______     ________
+    |     |   |     |    |       |
+    |     |   |     |    |__   __|
+    |     |___|     |      |  | 
+    |               |      |  |
+    |      ___      |    __|  |__
+    |     |   |     |   |        |
+    |_____|   |_____|   |________|
+    -->
+<body>
+    <div class='container'>
+        <!-- we start our magical journey with Functors-->
+        <h3>Functors!</h3>
+        <h4> Definition </h4>
+            Functor is a typeclass with the following kind signature: <br/>
+            <div class='code'>
+            <code>
+                Functor :: (* -> *) -> Constraint
+            </code> 
+            </div>
+            <br/>
+            Class Definition: <br/>
+            <div class='code'>
+                <code>
+                class Functor f where<br/>
+                &nbsp;&nbsp;fmap :: (a -> b) -> f a -> f b
+            </code>
+            </div> <br/>
+            Uncurried: <br/>
+            <div class='code'>
+                <code>
+                fmap :: (a -> b) -> (f a -> f b)
+            </code>
+            </div> <br/>
+            <br/>
+            Functors are things that can be mapped over (Computational spaces) <br/>
+            To be a Functor, two properties must be satisfied: <br/>
+            <ul>
+                <li> <code>
+                    fmap id = id <br/>
+                    fmap (\x -> x) = \x -> x
+                </code></li>
+                <li> <code>fmap (f . g) = fmap f . fmap g <br/> fmap (f . g) F = fmap f (fmap g F)</code> </li>
+            </ul>
+            <br/>
+
+            A Function is a Functor: <br/> <!--Gotta love the tongue twisters-->
+            <div class='code'>
+                <code> 
+                    instance Functor ((->) r) where<br/>
+                    &nbsp;&nbsp;fmap f g = (\x -> f (g x))
+                </code> 
+            </div><br/>
+        <h4> Lifting a function </h4>
+            fmap can be thought of as a <em>function</em> that takes one <em>function</em> and outputs a new <em>function</em> 
+            that takes a <b>Functor</b> as a parameter and outputs a <b>Functor</b> with the <em>function</em> applied to it... <br/>
+            <ul>
+                <li> <b>Input:</b> function to be applied to Functor </li>
+                <li> <b>Output:</b> function that:
+                <ul>
+                    <li><b>Input:</b> Functor to apply function to</li>
+                    <li><b>Output:</b> Functor with applied function</li>
+                </ul>
+                </li>
+            </ul>
+            <div class='code'>
+                <code>
+                    fmap :: (a -> b) -> (f a -> f b)
+                </code> 
+            </div></br>
+            So, instead of being applied to an element, the new function can be applied to a Functor
+
+        <h3> Applicative Functors </h3>
+        <h4> Definition </h4>
+            an Applicative is a type of Functor with kind signature: <br/>
+            <div class='code'>
+                <code>
+                    Applicative :: (* -> *) -> Constraint
+                </code>
+            </div> <br/>  
+            Class definition: <br/>
+            <div class='code'>
+                <code> 
+                    class (Functor f) => Applicative f where <br/>
+                    &nbsp;&nbsp;pure :: a -> f a <br/>
+                    &nbsp;&nbsp;(<*>) :: f (a -> b) -> f a -> f b
+                </code>
+            </div> <br/>
+            <code>pure</code> returns a in the lightest Applicative context <br/>
+            <code><*></code> takes a Functor over functions and returns a Functor over the result of those functions <br/>
+        <h4>Something to note...</h4>
+            <div class='code'>
+                <code>
+                    pure f <*> x = fmap f x
+                </code>
+            </div> <br/>
+            Which is actually an export of Control.Applicative: <br/>
+            <div class='code'>
+                <code>
+                    <$> :: (Functor f) => (a -> b) -> f a -> f b <br/>
+                    f <$> x = fmap f x
+                </code>
+            </div>
+            <h4>In Conclusion</h4>
+            The <code><*></code> operator applies the inside of the first Functor to the inside of the second <br>
+            Thi <code><$></code> operator applies the first argument to the inside of the second argument (a Functor) <br>
+            <br>
+            If you can figure out what this returns, you understand Applicatives: <br/>
+            <div class="code">
+                <code>
+                    (+) <$> (+3) <*> (*5)    
+                </code>
+            </div> <br/>
+            Hint: the result does not derive Show <br/>
+        <h4>Applicatives Laws</h4>
+            <ul>
+                <li><code>pure f <*> x = fmap f x</code></li>
+                <li><code>pure id <*> v = v <=> pure (\x -> x) v = v</code></li>
+                <li><code>pure (.) <*> u <*> v <*> w = u <*> (v <*> w)</code></li>
+                <li><code>pure f <*> pure x = pure (f x)</code></li>
+                <li><code>u <*> pure y = pure ($ y) <*> u</code></li>
+            </ul>
+        <h3>Monoids!</h3>
+        <h4>Definition</h4>
+            Kind Signature: <br/>
+            <div class="code">
+                <code>
+                    Monoid :: * -> Constraint
+                </code>
+            </div> <br/>
+            Class Definition: <br/>
+            <div class="code">
+                <code>
+                    class Monoid m where <br/> 
+                    &nbsp;&nbsp;mempty :: m  <br/>
+                    &nbsp;&nbsp;mappend :: m -> m -> m <br/> 
+                    &nbsp;&nbsp;mconcat :: [m] -> m <br/> 
+                    &nbsp;&nbsp;mconcat = foldr mappend mempty <br/>  
+                </code>
+            </div><br/>
+            <ul>
+                <li>mempty: returns the identity</li>
+                <li>mappend: binary function a -> a -> a</li>
+                <li>mconcat: takes a list of Monoids and concatenates them with append</li>
+            </ul>
+            <h4>Monoid Laws</h4>
+            <ul>
+                <li><code>mempty `mappend` x = x <=> mappend mempty x = x</code></li>
+                <li><code>x `mappend` mempty = x <=> mappend x mempty = x</code></li>
+                <li><code>(x `mappend` y) `mappend` z = x `mappend` (y `mappend` z)</code></li>
+            </ul>
+            Essentially, a Monoid is an associative binary operation that has an identity element <br>
+            That wasn't too difficult, now, was it?
+        <h3>Monads</h3>
+        <h4>Definition</h4>
+            Kind Signature: <br>
+            <div class="code">
+                <code>
+                    Monad :: (* -> *) -> Constraint
+                </code>
+            </div><br>
+            Class Definition: <br>
+            <div class="code">
+                <code>
+                    class Monad m where <br>
+                    &nbsp;&nbsp;return :: a -> m a <br>   
+                    <br>
+                    &nbsp;&nbsp;(>>=) :: m a -> (a -> m b) -> m b <br> 
+                    <br> 
+                    &nbsp;&nbsp;(>>) :: m a -> m b -> m b <br>  
+                    &nbsp;&nbsp;x >> y = x >>= \_ -> y <br>  
+                    <br>
+                    &nbsp;&nbsp;fail :: String -> m a <br>  
+                    &nbsp;&nbsp;fail msg = error msg <br>  
+                </code>
+            </div>
+            <br>
+            <code>return</code> is pretty much just <code>pure</code> <br>
+            <code>>>=</code>, or "bind", is what takes a Monad over <b>a</b> 
+                and applies it to a function over <b>a</b> that returns a Monad over <b>a</b><br>
+            <code>>></code>, another bind, takes a Monad and binds it to a lambda function <code>\_ -> y</code> that outputs the second Monad <br>
+            The easiest Monad to understand is the Maybe Monad. It is defined as: <br>
+            <div class="code">
+                <code>
+                    data Maybe a = Nothing | Just a
+                </code>
+            </div>
+            <br>
+            Maybe can be either Nothing or a thing wrapped in a "Just" <br>
+            Looking at how it's monadic functions are written: <br>
+            <div class="code"><code>
+                instance Monad Maybe where <br>
+                &nbsp;&nbsp;return x = Just x <br>
+                &nbsp;&nbsp;Nothing >>= f = Nothing <br>
+                &nbsp;&nbsp;Just x >>= f = f x <br>
+                &nbsp;&nbsp;fail _ = Nothing
+            </code></div>
+            <br>
+            For instance, <br>
+            <div class="code"><code>
+                Just 3 >>= (\x -> Just (1 + x)) <br>
+                > Just 4
+            </code></div>
+            <br>
+        <h4>Lists and Non-Determinism</h4>
+            At its core, a list is just a non-determinate data set. For example, by treating <code>[]</code> as an Applicative Functor: <br>
+            <div class="code"><code>
+                (*) <$> [1,2,3] <*> [1,10,100] <br>
+                > [1,10,100,2,20,200,3,30,300]
+            </code></div>
+            <br>
+            Looking at it as a Monad: <br>
+            <div class="code"><code>
+                instance Monad [] where <br>
+                &nbsp;&nbsp;return x = [x] <br>
+                &nbsp;&nbsp;xs >>= f = concat $ map f xs <br>
+                &nbsp;&nbsp;fail _ = []
+            </code></div>
+            <br>
+            Some interesting things about lists: <br>
+            <div class="code"><code>
+                [1,2,3] >>= \x -> [x,2*x] <br>
+                > [1,2,2,4,3,6] 
+            </code></div>
+            <br>
+            On that topic, as a list is also a Monoid, it belongs to the typeclass MonadPlus: <br>
+            Class Definition: <br>
+            <div class="code"><code>
+                class Monad m => MonadPlus m where <br> 
+                &nbsp;&nbsp;mzero :: m a <br>
+                &nbsp;&nbsp;mplus :: m a -> m a -> m a <br> 
+            </code></div>
+            <br>
+            And the implementation of that in terms of [] is: <br>
+            <div class="code"><code>
+                instance MonadPlus [] where <br>
+                &nbsp;&nbsp;mzero = [] <br>
+                &nbsp;&nbsp;mplus = (++)
+            </code></div>
+            <br>
+    </div>
+</body>
+</html>
