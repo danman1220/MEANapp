@@ -4,9 +4,6 @@ var Character = require('../controllers/CharacterController');
 
 module.exports = function(app) {
 
-	//this is now a database
-	var characters = {};
-
 	//set up routing for http requests
 	app.route('/api/:name/character/:charName')
 		.get(Character.get)

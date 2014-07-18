@@ -18,5 +18,5 @@ then, once you have it
 -in the project directory, run bower install
 
 to start the app, first start up mongodb with the mongod command
-then, in the project directory, run npm start
+then, in the project directory, run npm start or grunt for dev
 the app will be on localhost:5309 (adding 867 later)

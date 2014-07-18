@@ -1,4 +1,8 @@
 //app.js
+
+/**
+ * Provides initial configuration for the frontend app as a whole
+ */
 angular.module('DnDApp', ['ngRoute', 'ngResource'])
 	.config(['$routeProvider', function($routeProvider) {
 

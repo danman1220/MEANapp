@@ -1,22 +1,28 @@
-//characters controller
+//charactersController.js
+
+/**
+ * Controls the "All Characters" view which generates a table of all characters in the database
+ * 
+ * @Dependencies: CharacterService.js 
+ */
+
 angular.module('DnDApp').controller('CharactersController', ['$scope', 'CharacterService', function($scope, CharacterService) {
 	
 	$scope.players = [];
 
-	CharacterService.query(function(res) {
-		console.log(res);
-		$scope.characters = res;
-		
-		//get list of unique players from our query
-		$scope.players.push('ALL');
-		$scope.characters.forEach(function(character){
-			console.log(character.name);
-			if (character.hasOwnProperty('name')) {
-				console.log(character.name);
-				if ($scope.players.indexOf(character.name) === -1) {
-					$scope.players.push(character.name);
+	$scope.getCharacters = function() {
+		CharacterService.query(function(res) {
+			console.log(res);
+			$scope.characters = res;
+			
+			//get list of unique players from our query
+			$scope.characters.forEach(function(character){
+				if (character.hasOwnProperty('name')) {
+					if ($scope.players.indexOf(character.name) === -1) {
+						$scope.players.push(character.name);
+					}
 				}
-			}
+			});
 		});
-	});
+	};
 }]);
