@@ -11,14 +11,14 @@
 
     </style>
 </head>
-<!-- ______    ______     ________
-    |     |   |     |    |       |
-    |     |   |     |    |__   __|
-    |     |___|     |      |  | 
-    |               |      |  |
-    |      ___      |    __|  |__
-    |     |   |     |   |        |
-    |_____|   |_____|   |________|
+<!-- ______     ______      ________
+    |/     |   |/     |    |/       |
+    |/     |   |/     |    |/_    __|
+    |/     |___|/     |      |/  | 
+    |/                |      |/  |
+    |/      ___       |    __|/  |__
+    |/     |   |/     |   |/        |
+    |/_____|   |/_____|   |/________|
     -->
 <body>
     <div class='container'>
@@ -65,8 +65,9 @@
                 </code> 
             </div><br/>
         <h4> Lifting a function </h4>
-            fmap can be thought of as a <em>function</em> that takes one <em>function</em> and outputs a new <em>function</em> 
-            that takes a <b>Functor</b> as a parameter and outputs a <b>Functor</b> with the <em>function</em> applied to it... <br/>
+            fmap can be thought of as a <em>function</em> that takes one <em>function</em> 
+            and outputs a new <em>function</em> that takes a <b>Functor</b> as a parameter 
+            and outputs a <b>Functor</b> with the <em>function</em> applied to it... <br/>
             <ul>
                 <li> <b>Input:</b> function to be applied to Functor </li>
                 <li> <b>Output:</b> function that:
@@ -191,7 +192,8 @@
             <code>return</code> is pretty much just <code>pure</code> <br>
             <code>>>=</code>, or "bind", is what takes a Monad over <b>a</b> 
                 and applies it to a function over <b>a</b> that returns a Monad over <b>a</b><br>
-            <code>>></code>, another bind, takes a Monad and binds it to a lambda function <code>\_ -> y</code> that outputs the second Monad <br>
+            <code>>></code>, another bind, takes a Monad and binds it to a lambda function 
+            <code>\_ -> y</code> that outputs the second Monad <br>
             The easiest Monad to understand is the Maybe Monad. It is defined as: <br>
             <div class="code">
                 <code>
@@ -216,7 +218,8 @@
             </code></div>
             <br>
         <h4>Lists and Non-Determinism</h4>
-            At its core, a list is just a non-determinate data set. For example, by treating <code>[]</code> as an Applicative Functor: <br>
+            At its core, a list is just a non-determinate data set. For example, by treating 
+            <code>[]</code> as an Applicative Functor: <br>
             <div class="code"><code>
                 (*) <$> [1,2,3] <*> [1,10,100] <br>
                 > [1,10,100,2,20,200,3,30,300]

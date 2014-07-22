@@ -3,7 +3,7 @@
 	<div>
 		<div ng-repeat='attr in playerAttributes'>
 			<label for='attr.name'>{{attr.alias}}:</label>
-			<input type='text'  class='form-control' name='attr.name' autocomplete='off' ng-model='player[attr.name]' required />
+			<input type='text'  class='form-control' name='attr.name' autocomplete='off' ng-change='submitSuccess=false' ng-model='player[attr.name]' required />
 		</div>
 	</div>
 	<h3>Character Info</h3>
@@ -11,7 +11,7 @@
 		<div ng-repeat='attr in attributes'>
 			<div class='form-group'>
 				<label for='attr.name'>{{attr.alias}}:</label>
-				<input type='text' class='form-control' name='attr.name' autocomplete='off' ng-model='character[attr.name]' required />
+				<input type='text' class='form-control' name='attr.name' autocomplete='off' ng-change='submitSuccess=false' ng-model='character[attr.name]' required />
 			</div>
 		</div>
 	</div>
@@ -20,5 +20,5 @@
 </form>
 <div class='center-block' style='width:100px; height: 100px'>
 	Status: <br>
-	<div ng-show='error' class='bg-danger '>{{error}}</div>
+	<div ng-show='error&&!submitSuccess' class='bg-danger '>{{error}}</div>
 </div>

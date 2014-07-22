@@ -10,17 +10,18 @@ var mongoose  = require('mongoose'),
 exports.create = function(req, res) {
 	var character = new Character(req.body);
 	character.player = req.params.name;
-
-	//If the database has a record of the character, respond 400
-	if (Character.find({player: character.player, name: character.name})) {
-		return res.send(400, "Character already exists");
-	}
-
-	character.save(function(err) {
-		if (err) {
-			console.log(err);
+	// If the database has a record of the character, respond 400
+	Character.findOne({player: character.player, name: character.name}).exec(function(error, found) {
+		if(found){
+			return res.send(400, "Character already exists");
 		} else {
-			res.json(character);
+			character.save(function(err) {
+				if (err) {
+					console.log(err);
+				} else {
+					res.json(character);
+				}
+			});
 		}
 	});
 };
@@ -56,10 +57,15 @@ exports.update = function(req, res) {
 
 /**
  * gets all characters under the player req.params.name or all players
- * should never 404
+ * 
+ * @error: 404 on no collection found in the database
  */
 exports.all = function(req, res) {
 	Character.find({player: req.params.name || {$exists: true}}).exec(function(err, characterList) {
-		res.json(characterList);
+		if (!characterList) {
+			return res.send(404, "The Character collection does not exist");
+		} else {
+			res.json(characterList);
+		}
 	});
 };
