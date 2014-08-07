@@ -10,7 +10,7 @@ you need:
 
 **node,
 mongodb,
-bower** (npm install -g bower)
+bower** (`npm install -g bower`)
 
 ####Then, once you have it
 
