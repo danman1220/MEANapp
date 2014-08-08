@@ -27,7 +27,7 @@ angular.module('DnDApp').controller('SubmitController', ['$scope', 'CharacterSer
 		//POST
 		CharacterService.save(
 			{
-				name: $scope.player.name, 
+				name:     $scope.player.name, 
 				charName: $scope.character.name
 			}, 
 			$scope.character, 

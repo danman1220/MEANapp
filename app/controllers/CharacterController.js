@@ -40,7 +40,7 @@ exports.create = function(req, res) {
 exports.get = function(req, res) {
 	Character.findOne({
 						  player: req.params.name, 
-						  name: req.params.charName
+						  name:   req.params.charName
 					  })
 	.exec(function(err, character) {
 		if (err) {
@@ -62,7 +62,7 @@ exports.get = function(req, res) {
 exports.update = function(req, res) {
 	res.json(Character.update({
 								  player: req.params.name, 
-								  name: req.params.charName
+								  name:   req.params.charName
 							  }, 
 							  req.body));
 

@@ -13,7 +13,7 @@ angular.module('DnDApp').controller('QueryController', ['$scope', 'CharacterServ
 		//GET
 		CharacterService.get(
 			{
-		      	name: $scope.query.player, 
+		      	name:     $scope.query.player, 
 		      	charName: $scope.query.character
 	     	}, 
 			function(character) {
