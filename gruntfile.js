@@ -32,6 +32,12 @@ module.exports = function(grunt) {
 					nodeArgs: ['--debug']
 				}
 			}
+		},
+
+		exec: {
+			clean: 'del node_modules /Q && del public\\bower_components /Q',
+			node: 'npm install',
+			bower: 'bower install'
 		}
 
 
@@ -39,8 +45,10 @@ module.exports = function(grunt) {
 
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-nodemon');
+	grunt.loadNpmTasks('grunt-exec');
 	grunt.loadNpmTasks('grunt-concurrent');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 
 	grunt.registerTask('default', ['concurrent']);
+	grunt.registerTask('clean-install', ['exec:clean', 'exec:node', 'exec:bower']);
 };

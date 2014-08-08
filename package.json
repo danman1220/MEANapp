@@ -8,6 +8,7 @@
 		"body-parser": "latest",
 		"grunt": "latest",
 		"grunt-nodemon": "latest",
+		"grunt-exec": "latest",
 		"grunt-concurrent": "latest",
 		"grunt-contrib-watch": "latest",
 		"grunt-contrib-jshint": "latest",
