@@ -17,9 +17,9 @@ angular.module('DnDApp').controller('CharactersController', ['$scope', 'Characte
 			
 			//get list of unique players from our query
 			$scope.characters.forEach(function(character){
-				if (character.hasOwnProperty('name')) {
-					if ($scope.players.indexOf(character.name) === -1) {
-						$scope.players.push(character.name);
+				if (character.hasOwnProperty('player')) {
+					if ($scope.players.indexOf(character.player) === -1) {
+						$scope.players.push(character.player);
 					}
 				}
 			});
