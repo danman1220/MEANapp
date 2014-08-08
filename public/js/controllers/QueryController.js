@@ -11,7 +11,11 @@ angular.module('DnDApp').controller('QueryController', ['$scope', 'CharacterServ
 	//makes a GET request to /api/:name/character/:charName
 	$scope.getCharacter = function(name) {
 		//GET
-		CharacterService.get({name: $scope.query.player, charName: $scope.query.character}, 
+		CharacterService.get(
+			{
+		      	name: $scope.query.player, 
+		      	charName: $scope.query.character
+	     	}, 
 			function(character) {
 				$scope.character = character;
 			}, 

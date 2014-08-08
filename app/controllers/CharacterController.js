@@ -9,10 +9,15 @@ var mongoose  = require('mongoose'),
  */
 exports.create = function(req, res) {
 	var character = new Character(req.body);
+
 	character.player = req.params.name;
 	// If the database has a record of the character, respond 400
-	Character.findOne({player: character.player, name: character.name}).exec(function(error, found) {
-		if(found){
+	Character.findOne({
+						  player: character.player, 
+		 				  name:   character.name
+					  })
+	.exec(function(error, found) {
+		if(found) {
 			return res.send(400, "Character already exists");
 		} else {
 			character.save(function(err) {
@@ -33,7 +38,11 @@ exports.create = function(req, res) {
  * @error 404 error if the character cannot be found
  */
 exports.get = function(req, res) {
-	Character.findOne({player: req.params.name, name: req.params.charName}).exec(function(err, character) {
+	Character.findOne({
+						  player: req.params.name, 
+						  name: req.params.charName
+					  })
+	.exec(function(err, character) {
 		if (err) {
 			console.log(err);
 		} else if (!character) {
@@ -51,7 +60,11 @@ exports.get = function(req, res) {
  * @TODO write errors for this
  */
 exports.update = function(req, res) {
-	res.json(Character.update({player: req.params.name, name: req.params.charName}, req.body));
+	res.json(Character.update({
+								  player: req.params.name, 
+								  name: req.params.charName
+							  }, 
+							  req.body));
 
 };
 
@@ -61,7 +74,10 @@ exports.update = function(req, res) {
  * @error: 404 on no collection found in the database
  */
 exports.all = function(req, res) {
-	Character.find({player: req.params.name || {$exists: true}}).exec(function(err, characterList) {
+	Character.find({
+					   player: req.params.name || {$exists: true}
+				   })
+	.exec(function(err, characterList) {
 		if (!characterList) {
 			return res.send(404, "The Character collection does not exist");
 		} else {
