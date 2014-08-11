@@ -6,7 +6,7 @@
  * @Dependencies: CharacterService.js 
  */
 
-angular.module('DnDApp').controller('CharactersController', ['$scope', 'CharacterService', function($scope, CharacterService) {
+angular.module('DnDApp').controller('CharactersController', ['$scope', '$route', 'CharacterService', function($scope, $route, CharacterService) {
 	
 	$scope.players = [];
 
@@ -39,5 +39,6 @@ angular.module('DnDApp').controller('CharactersController', ['$scope', 'Characte
 			//Fail
 			console.log(err);
 		});
+		$route.reload();
 	};
 }]);
