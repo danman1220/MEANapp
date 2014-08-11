@@ -1,0 +1,11 @@
+<!-- dbmanager.html-->
+<div class='col-md-6'>
+    <h1>Database Management</h1>
+
+    <p>Here, you can clear the database of all records</p>
+    <button class='btn btn-danger' ng-click='clearDatabase()'>Clear Database</button>
+    <br/>
+    <br>
+    <input type='text' ng-model='delPlayer' class='form-control'></input>
+    <button class='btn btn-danger' ng-click='deleteCharacters(delPlayer)'>Delete {{delPlayer || "Everybody"}}'s Characters</button>
+</div>

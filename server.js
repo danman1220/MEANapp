@@ -1,7 +1,7 @@
 //server.js
-var mongoose = require('mongoose'),
-	express = require('express'),
-	app = express(),
+var mongoose   = require('mongoose'),
+	express    = require('express'),
+	app        = express(),
 	bodyParser = require('body-parser');
 
 //databasing

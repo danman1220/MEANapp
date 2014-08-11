@@ -69,6 +69,31 @@ exports.update = function(req, res) {
 };
 
 /**
+ * deletes a character from the database
+ *
+ *@error: 404 on no character found, 500 on server error
+ */
+ exports.delete = function(req, res) {
+ 	Character.remove({
+ 		player: req.params.name,
+ 		name:   req.params.charName
+ 	},
+ 	function (err, result){
+ 		if(err) {
+ 			console.log(err);
+ 			res.status(500).send(err);
+ 		} else {
+ 			if(result === 0) {
+ 				res.status(404).send("No such character found");
+ 			} else {
+	 			console.log(result);
+	 			res.json(result);
+	 		}
+ 		}
+ 	});
+ };
+
+/**
  * gets all characters under the player req.params.name or all players
  * 
  * @error: 404 on no collection found in the database
@@ -79,9 +104,32 @@ exports.all = function(req, res) {
 				   })
 	.exec(function(err, characterList) {
 		if (!characterList) {
-			return res.send(404, "The Character collection does not exist");
+			return res.status(404).send("The Character collection does not exist");
 		} else {
 			res.json(characterList);
+		}
+	});
+};
+
+/**
+ * deletes all characters under the player req.params.name or all players
+ *
+ *@error: 404 on no player found in database
+ */
+exports.deleteAll = function(req, res) {
+	Character.remove({
+		player: req.params.name || {$exists: true}
+	},
+	function(err, result) {
+		if(err) {
+			console.log(err);
+		} else {
+			if(result === 0) {
+				res.status(404).send('No Player Found');
+			} else {
+				console.log(result);
+				res.json(result);
+			}
 		}
 	});
 };
