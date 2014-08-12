@@ -1,11 +1,16 @@
 <!-- dbmanager.html-->
-<div class='col-md-6'>
+<div class='col-md-6' ng-init='populatePlayers()'>
     <h1>Database Management</h1>
 
     <p>Here, you can clear the database of all records</p>
     <button class='btn btn-danger' ng-click='clearDatabase()'>Clear Database</button>
     <br/>
     <br/>
-    <input type='text' ng-model='delPlayer' class='form-control'></input>
-    <button class='btn btn-danger' ng-click='deleteCharacters(delPlayer)'>Delete {{delPlayer || "Everybody"}}'s Characters</button>
+    <form role='form' class='form-horizontal col-md-7'>
+        <div class='form-group'>
+            <label for='playerSelect'> Select a Player </label>
+            <select id='playerSelect' class='form-control' ng-model='delPlayer' ng-options='player for player in players'> Select a Player </select>
+        </div>
+        <button class='btn btn-danger' ng-click='deleteCharacters(delPlayer)'>Delete {{delPlayer || "Everybody"}}'s Characters</button>
+    </form>
 </div>

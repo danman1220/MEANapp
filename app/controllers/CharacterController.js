@@ -64,7 +64,7 @@ exports.update = function(req, res) {
 								  player: req.params.name, 
 								  name:   req.params.charName
 							  }, 
-							  req.body));
+							req.body));
 
 };
 

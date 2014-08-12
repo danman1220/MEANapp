@@ -23,4 +23,22 @@ angular.module('DnDApp').controller('DBManagerController', ['$scope', 'Character
             });
         }
     };
+
+    $scope.players = [];
+    $scope.populatePlayers = function() {
+        CharacterService.query(function(res) {
+            var charList = res;
+            charList.forEach(function(character) {
+                if (character.hasOwnProperty('player')) {
+                    if ($scope.players.indexOf(character.player) === -1) {
+                        $scope.players.push(character.player);
+                    }
+                }
+            });
+        },
+        function(err) {
+            //error
+            console.log(err);
+        });
+    };
 }]);
