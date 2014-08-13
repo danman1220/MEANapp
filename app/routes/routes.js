@@ -19,6 +19,7 @@ module.exports = function(app) {
 		.get(Character.all)
 		.delete(Character.deleteAll);
 
+	//Haskell notes because why not
 	app.route('/api/haskell').get(function(req, res) {
 		res.sendfile('./public/haskell.html');
 	});

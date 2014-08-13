@@ -28,17 +28,19 @@ angular.module('DnDApp').controller('CharactersController', ['$scope', '$route',
 
 	$scope.deleteCharacter = function (character) {
 		console.log(character);
-		CharacterService.delete({
-			name: character.player,
-			charName: character.name
-		}, function(res) {
-			//Success
-			console.log(res);
-		},
-		function(err) {
-			//Fail
-			console.log(err);
-		});
+		CharacterService.delete(
+			{
+				name:     character.player,
+				charName: character.name
+			}, 
+			function(res) {
+				//Success
+				console.log(res);
+			},
+			function(err) {
+				//Fail
+				console.log(err);
+			});
 		$route.reload();
 	};
 }]);
