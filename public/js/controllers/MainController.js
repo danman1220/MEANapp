@@ -5,7 +5,10 @@
  *
  */
 angular.module('DnDApp').controller('MainController', ['$scope', function($scope) {
+    'use strict';
 
 	//logic for START page goes here
+
+    $scope.info = 'SOMETHING';
 
 }]);

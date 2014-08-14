@@ -6,6 +6,7 @@
  * @Dependencies: CharacterService
  */
 angular.module('DnDApp').controller('SubmitController', ['$scope', 'CharacterService', function($scope, CharacterService) {
+	'use strict';
 
 	//submitSuccess used to toggle state of submission
 	$scope.submitSuccess = false;
@@ -15,11 +16,11 @@ angular.module('DnDApp').controller('SubmitController', ['$scope', 'CharacterSer
 	$scope.character = {};
 
 	//used for generating tables
-	$scope.playerAttributes = [{name: "name",  alias: "Name"}];
-	$scope.attributes       = [{name: "name",  alias: "Character Name"}, 
-							   {name: "class", alias: "Character Class"}, 
-							   {name: "race",  alias: "Character Race"}, 
-							   {name: "level", alias: "Character Level"}];
+	$scope.playerAttributes = [{name: 'name',  alias: 'Name'}];
+	$scope.attributes       = [{name: 'name',  alias: 'Character Name'}, 
+							   {name: 'class', alias: 'Character Class'}, 
+							   {name: 'race',  alias: 'Character Race'}, 
+							   {name: 'level', alias: 'Character Level'}];
 
 	//generates a POST request to /api/:name/character/:charname with the data from $scope.character 
 	$scope.addData = function() {
@@ -33,14 +34,15 @@ angular.module('DnDApp').controller('SubmitController', ['$scope', 'CharacterSer
 			$scope.character, 
 			function(res) {
 				//SUCCESS - toggle state to success, display success confirm, and clear fields
+				console.log(res);
 				$scope.submitSuccess = true;
-				$scope.success       = "Submitted " + $scope.player.name + "'s Character " + $scope.character.name;
+				$scope.success       = 'Submitted ' + $scope.player.name + '\'s Character ' + $scope.character.name;
 				$scope.character     = {};
 				$scope.player        = {};
 			}, 
 			function(err) {
 				$scope.submitSuccess = false;
-				console.log("ERROR: " + err.data);
+				console.log('ERROR: ' + err.data);
 				$scope.error         = err.data;
 			});
 	};

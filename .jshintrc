@@ -1,0 +1,11 @@
+{
+    "browser": true,   //allows objects like console and alert to be used
+    "curly": true,     //enforces curly braces around block statements
+    "eqeqeq": true,    //enforces the use of === and !== over == and !=
+    "forin":true,      //forces for..in loops to check hasOwnProperty
+    "node": true,      //sets node globals
+    "noempty": true,   //forces blocks to not be empty
+    "unused": true,    //warns if variable is defined but never used
+    "quotmark": true,  //enforces singular quotation mark style in file-level
+    "strict": true     //forces 'use strict' on all functions
+}

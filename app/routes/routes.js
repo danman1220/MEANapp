@@ -3,6 +3,7 @@
 var Character = require('../controllers/CharacterController');
 
 module.exports = function(app) {
+	'use strict';
 
 	//set up routing for http requests
 	app.route('/api/:name/character/:charName')

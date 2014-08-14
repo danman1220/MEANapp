@@ -6,10 +6,11 @@
  * @Dependencies: CharacterService
  */
 angular.module('DnDApp').controller('QueryController', ['$scope', 'CharacterService', function($scope, CharacterService) {
+	'use strict';
 
 	//TODO - make sure all of $scope.query is defined before we GET
 	//makes a GET request to /api/:name/character/:charName
-	$scope.getCharacter = function(name) {
+	$scope.getCharacter = function() {
 		//GET
 		CharacterService.get(
 			{

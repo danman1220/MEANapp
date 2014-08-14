@@ -8,6 +8,8 @@ var mongoose  = require('mongoose'),
  * @error 400 error if the character already exists under that name combination
  */
 exports.create = function(req, res) {
+	'use strict';
+
 	var character = new Character(req.body);
 
 	character.player = req.params.name;
@@ -18,7 +20,7 @@ exports.create = function(req, res) {
 					  })
 	.exec(function(error, found) {
 		if(found) {
-			return res.send(400, "Character already exists");
+			return res.send(400, 'Character already exists');
 		} else {
 			character.save(function(err) {
 				if (err) {
@@ -38,6 +40,8 @@ exports.create = function(req, res) {
  * @error 404 error if the character cannot be found
  */
 exports.get = function(req, res) {
+	'use strict';
+
 	Character.findOne({
 						  player: req.params.name, 
 						  name:   req.params.charName
@@ -46,10 +50,10 @@ exports.get = function(req, res) {
 		if (err) {
 			console.log(err);
 		} else if (!character) {
-			console.log("No match found");
-			res.send(404, {error: "No Match Found"});
+			console.log('No match found');
+			res.send(404, {error: 'No Match Found'});
 		} else {
-			console.log("SENDING");
+			console.log('SENDING');
 			res.json(character);
 		}
 	});
@@ -60,6 +64,8 @@ exports.get = function(req, res) {
  * @TODO write errors for this
  */
 exports.update = function(req, res) {
+	'use strict';
+
 	res.json(Character.update({
 								  player: req.params.name, 
 								  name:   req.params.charName
@@ -74,6 +80,8 @@ exports.update = function(req, res) {
  *@error: 404 on no character found, 500 on server error
  */
  exports.delete = function(req, res) {
+ 	'use strict';
+
  	Character.remove({
  		player: req.params.name,
  		name:   req.params.charName
@@ -84,7 +92,7 @@ exports.update = function(req, res) {
  			res.status(500).send(err);
  		} else {
  			if(result === 0) {
- 				res.status(404).send("No such character found");
+ 				res.status(404).send('No such character found');
  			} else {
 	 			console.log(result);
 	 			res.json(result);
@@ -99,12 +107,14 @@ exports.update = function(req, res) {
  * @error: 404 on no collection found in the database
  */
 exports.all = function(req, res) {
+	'use strict';
+
 	Character.find({
 					   player: req.params.name || {$exists: true}
 				   })
 	.exec(function(err, characterList) {
 		if (!characterList) {
-			return res.status(404).send("The Character collection does not exist");
+			return res.status(404).send('The Character collection does not exist');
 		} else {
 			res.json(characterList);
 		}
@@ -117,6 +127,8 @@ exports.all = function(req, res) {
  *@error: 404 on no player found in database
  */
 exports.deleteAll = function(req, res) {
+	'use strict';
+
 	Character.remove({
 		player: req.params.name || {$exists: true}
 	},

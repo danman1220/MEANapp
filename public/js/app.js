@@ -5,6 +5,7 @@
  */
 angular.module('DnDApp', ['ngRoute', 'ngResource'])
 	.config(['$routeProvider', function($routeProvider) {
+		'use strict';
 
 		//provides different views in the page for different actions
 		$routeProvider

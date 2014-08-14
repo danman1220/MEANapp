@@ -1,7 +1,7 @@
 //gruntfile.js
 
 module.exports = function(grunt) {
-	
+	'use strict';
 
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
@@ -15,7 +15,8 @@ module.exports = function(grunt) {
 
 		jshint: {
 			options: {
-				reporter: require('jshint-stylish')
+				reporter: require('jshint-stylish'),
+				jshintrc: true
 			},
 			developer: ['gruntfile.js', './public/js/**/*.js', './app/**/*.js']
 		},

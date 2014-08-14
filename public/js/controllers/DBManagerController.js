@@ -1,8 +1,10 @@
 //DBManagerController
 
 angular.module('DnDApp').controller('DBManagerController', ['$scope', 'CharacterService', function($scope, CharacterService) {
+    'use strict';
+
     $scope.deleteCharacters = function(player) {
-        console.log("DELETING");
+        console.log('DELETING');
         if(player){
             CharacterService.delete({name: player}, function(res) {
                 //Success
@@ -24,6 +26,7 @@ angular.module('DnDApp').controller('DBManagerController', ['$scope', 'Character
         }
     };
 
+    //Creates a list of all players currently in the database
     $scope.players = [];
     $scope.populatePlayers = function() {
         CharacterService.query(function(res) {

@@ -7,7 +7,8 @@
  */
 
 angular.module('DnDApp').controller('CharactersController', ['$scope', '$route', 'CharacterService', function($scope, $route, CharacterService) {
-	
+	'use strict';
+
 	$scope.players = [];
 
 	$scope.getCharacters = function() {

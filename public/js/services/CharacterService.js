@@ -6,6 +6,7 @@
  * @Dependencies: ngResource
  */
 angular.module('DnDApp').factory('CharacterService', ['$resource', function($resource) {
+    'use strict';
 
 	//Gives us a $resource which can be used to communicate RESTfully, 
 	//update isn't included by default, so we write it here
